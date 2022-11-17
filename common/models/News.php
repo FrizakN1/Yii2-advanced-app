@@ -66,6 +66,16 @@ class News extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    public function getNews_tags()
+    {
+        return $this->hasMany(News_tag::className(), ['news_id' => 'id']);
+    }
+
     public function saveImage($model){
         $model->image = UploadedFile::getInstance($model, 'image');
         $fileName = $model->image->baseName.Yii::$app->getSecurity()->generateRandomString(10);

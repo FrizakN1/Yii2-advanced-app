@@ -105,14 +105,6 @@ class NewsController extends Controller
                         $newsTag->save(false);
                     }
                 }
-//                foreach ($model->tagsList as $item) {
-//                    if ($item) {
-//                        $newsTag = new News_tag();
-//                        $newsTag->news_id = $model->id;
-//                        $newsTag->tag_id = $item;
-//                        $newsTag->save();
-//                    }
-//                }
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -11,6 +11,15 @@ use yii\widgets\ActiveForm;
 
 <div class="news-form">
 
+    <?php
+        $tagsID = '';
+        if ($model->id){
+            foreach ($model->news_tags as $tagID){
+                $tagsID = $tagsID.$tagID->tag_id.', ';
+            }
+        }
+    ?>
+
     <?php $form = ActiveForm::begin(['options' => ['class' => 'news_form']]); ?>
 
     <div class="left_side">
@@ -20,7 +29,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'image')->fileInput() ?>
 
-        <?= $form->field($model, 'tagsList')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'tagsList')->hiddenInput(['value' => $tagsID])->label(false) ?>
 
         <div class="btn_tags">Добавить теги</div>
 
@@ -55,10 +64,6 @@ use yii\widgets\ActiveForm;
         let tags = <?= json_encode($tags); ?>
     </script>
 </div>
-
-
-<?php //Yii::$app->view->registerJs('let count.push("'. $tags.'")',  \yii\web\View::POS_HEAD);
-?>
 
 <?php $this->registerJsFile("@web/js/tags_window.js", ['depends' => 'yii\web\YiiAsset'])?>
 <?php $this->registerJsFile("@web/js/preview_img.js", ['depends' => 'yii\web\YiiAsset'])?>
