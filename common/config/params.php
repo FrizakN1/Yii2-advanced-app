@@ -1,9 +1,9 @@
 <?php
 return [
-    'adminEmail' => 'testsonlinesender@yandex.ru',
-    'supportEmail' => 'testsonlinesender@yandex.ru',
-    'senderEmail' => 'testsonlinesender@yandex.ru',
-    'senderName' => 'Example.com mailer',
+    'adminEmail' => 'frizak2017@mail.ru',
+    'supportEmail' => 'infoFreshNews@yandex.ru',
+    'senderEmail' => 'infoFreshNews@yandex.ru',
+    'senderName' => 'sender bot',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
 ];

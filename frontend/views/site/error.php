@@ -8,6 +8,7 @@
 use yii\helpers\Html;
 
 $this->title = 'Страница не найдена';
+
 ?>
 <div class="site-error">
 

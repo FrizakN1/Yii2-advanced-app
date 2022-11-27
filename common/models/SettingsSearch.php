@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Settings;
 
 /**
- * SettingsSearch represents the model behind the search form of `backend\models\Settings`.
+ * SettingsSearch represents the model behind the search form of `common\models\Settings`.
  */
 class SettingsSearch extends Settings
 {
@@ -17,9 +17,8 @@ class SettingsSearch extends Settings
     public function rules()
     {
         return [
-            [['id', 'phone_number'], 'integer'],
-            [['email', 'address', 'btn_text_home_page', 'footer', 'contact_information_text', 'project_description'], 'safe'],
-            [['yandex_map_x', 'yandex_map_y'], 'number'],
+            [['id'], 'integer'],
+            [['key', 'value', 'description'], 'safe'],
         ];
     }
 
@@ -60,17 +59,11 @@ class SettingsSearch extends Settings
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'phone_number' => $this->phone_number,
-            'yandex_map_x' => $this->yandex_map_x,
-            'yandex_map_y' => $this->yandex_map_y,
         ]);
 
-        $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'btn_text_home_page', $this->btn_text_home_page])
-            ->andFilterWhere(['like', 'footer', $this->footer])
-            ->andFilterWhere(['like', 'contact_information_text', $this->contact_information_text])
-            ->andFilterWhere(['like', 'project_description', $this->project_description]);
+        $query->andFilterWhere(['like', 'key', $this->key])
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

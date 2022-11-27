@@ -14,13 +14,17 @@ class NewsController extends SettingsController
     }
 
     public function actionIndex() {
-        $news = News::find()->orderBy(['id' => SORT_DESC])->all();
+        $news = News::find()->where(['=', 'state', '1'])->orderBy(['id' => SORT_DESC])->all();
 
         return $this->render('index', ['news' => $news]);
     }
 
     public function actionView($id) {
         $news = News::find()->where(['=', 'id', $id])->one();
+
+        if ($news->state == 2 || $news->state == 4) {
+            return $this->redirect(['/site/error'], 301);
+        }
 
         return $this->render('view', ['news' => $news]);
     }

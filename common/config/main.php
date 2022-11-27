@@ -5,6 +5,7 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'language' => 'ru-RU',
+    'name' => 'FreshNews',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
@@ -24,14 +25,20 @@ return [
                     'clientId'     => '51396940',
                     'clientSecret' => 'jyKJ8nLVaTHJb5bME0pq',
                 ],
+                'yandex' => [
+                    'class'        => 'dektrium\user\clients\Yandex',
+                    'clientId'     => '0881409225a945ce90e35707299749a8',
+                    'clientSecret' => '2703d3b8a0fe4781918b39c5ed050937',
+                    'returnUrl' => 'http://localhost/user/security/auth?authclient=yandex'
+                ],
             ],
         ],
     ],
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'enableConfirmation' => false,
-            'enableUnconfirmedLogin' => true,
+            'enableConfirmation' => true,
+            'enableUnconfirmedLogin' => false,
             'enablePasswordRecovery' => true,
             'confirmWithin' => 21600,
             'cost' => 12,

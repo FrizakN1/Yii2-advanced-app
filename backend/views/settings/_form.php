@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Settings */
+/* @var $model common\models\Settings */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -12,26 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'phone_number')->textInput() ?>
+    <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'value')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'btn_text_home_page')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'footer')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'contact_information_text')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'project_description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'yandex_map_x')->textInput() ?>
-
-    <?= $form->field($model, 'yandex_map_y')->textInput() ?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

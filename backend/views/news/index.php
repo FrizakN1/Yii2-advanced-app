@@ -5,9 +5,10 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use dektrium\user\models\User;
+use common\models\State;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\NewsSearch */
+/* @var $searchModel common\models\NewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Новости';
@@ -49,6 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_by',
                 'value' => function($model) {
                     return User::find()->where(['=', 'id', $model->created_by])->one()->username;
+                }
+            ],
+            [
+                'attribute' => 'state',
+                'value' => function($model) {
+                    return State::find()->where(['=', 'id', $model->state])->one()->name;
                 }
             ],
             [

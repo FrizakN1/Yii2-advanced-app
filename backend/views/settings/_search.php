@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\SettingsSearch */
+/* @var $model common\models\SettingsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -17,23 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'phone_number') ?>
+    <?= $form->field($model, 'key') ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'value') ?>
 
-    <?= $form->field($model, 'address') ?>
-
-    <?= $form->field($model, 'btn_text_home_page') ?>
-
-    <?php // echo $form->field($model, 'footer') ?>
-
-    <?php // echo $form->field($model, 'contact_information_text') ?>
-
-    <?php // echo $form->field($model, 'project_description') ?>
-
-    <?php // echo $form->field($model, 'yandex_map_x') ?>
-
-    <?php // echo $form->field($model, 'yandex_map_y') ?>
+    <?= $form->field($model, 'description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

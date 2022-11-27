@@ -3,10 +3,11 @@
 namespace backend\controllers;
 
 use common\models\News;
-use common\models\News_tag;
 use common\models\NewsSearch;
+use common\models\State;
 use common\models\Tag;
-use common\Models\TagSearch;
+use common\models\NewsTag;
+use common\models\NewsTagSearch;
 use dektrium\user\filters\AccessRule;
 use dektrium\user\models\Profile;
 use yii\filters\AccessControl;
@@ -14,16 +15,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
-use common\models\News_tagSearch;
 
-/**
- * NewsController implements the CRUD actions for News model.
- */
+
 class NewsController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
     public function behaviors()
     {
         return array_merge(
@@ -62,6 +57,7 @@ class NewsController extends Controller
         if (!Yii::$app->user->isGuest){
             Yii::$app->params['profile'] = Profile::find()->where(['=', 'user_id', Yii::$app->user->identity->id])->one();
         }
+
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -90,22 +86,34 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        $tags = Tag::find()->asArray()->all();
+        $tags = Tag::find()->all();
+        $states = State::find()->all();
+        $dataTag = [];
+        $dataState = [];
+
+        foreach ($tags as $tag) {
+            $dataTag[$tag->id] = $tag->name;
+        }
+
+        foreach ($states as $state) {
+            $dataState[$state->id] = $state->name;
+        }
 
         if ($this->request->isPost) {
             $model->load($this->request->post());
             $model->saveImage($model);
+
             if ($model->tagsList){
-                $model->tagsList = explode(",", $model->tagsList);
                 foreach ($model->tagsList as $item) {
                     if ($item != 0){
-                        $newsTag = new News_tag();
+                        $newsTag = new NewsTag();
                         $newsTag->news_id = $model->id;
                         $newsTag->tag_id = $item;
                         $newsTag->save(false);
                     }
                 }
             }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->loadDefaultValues();
@@ -113,34 +121,54 @@ class NewsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'tags' => $tags,
+            'dataTag' => $dataTag,
+            'dataState' => $dataState,
         ]);
     }
 
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $tags = Tag::find()->asArray()->all();
+        $tags = Tag::find()->all();
+        $states = State::find()->all();
+        $dataTag = [];
+        $dataState = [];
+
+        foreach ($tags as $tag) {
+            $dataTag[$tag->id] = $tag->name;
+        }
+
+        foreach ($states as $state) {
+            $dataState[$state->id] = $state->name;
+        }
 
         if ($this->request->isPost) {
             $model->load($this->request->post());
             $model->saveImage($model);
+
+            if ($model->tagsList){
+                foreach ($model->tagsList as $item) {
+                    if ($item != 0){
+                        $newsTag = new NewsTag();
+                        $newsTag->news_id = $model->id;
+                        $newsTag->tag_id = $item;
+                        $newsTag->save(false);
+                    }
+                }
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('update', [
             'model' => $model,
-            'tags' => $tags,
+            'dataTag' => $dataTag,
+            'dataState' => $dataState,
         ]);
     }
 
-    /**
-     * Deletes an existing News model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
@@ -149,13 +177,6 @@ class NewsController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the News model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return News the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = News::findOne(['id' => $id])) !== null) {

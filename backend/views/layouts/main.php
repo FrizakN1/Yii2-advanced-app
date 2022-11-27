@@ -219,6 +219,7 @@ if (Yii::$app->controller->action->id === 'login') {
                             ['label' => 'Настройки', 'url' => ['/settings']],
                             ['label' => 'Новости', 'url' => ['/news']],
                             ['label' => 'Теги', 'url' => ['/tag']],
+                            ['label' => 'Статусы', 'url' => ['/state']],
                             ['label' => 'Параметры страниц', 'url' => ['/page']],
                             ['label' => 'Пользователи', 'url' => ['/user/admin']],
 

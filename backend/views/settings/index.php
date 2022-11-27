@@ -1,36 +1,43 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Settings */
+/* @var $searchModel common\models\SettingsSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Настройки';
-$this->params['breadcrumbs'][] = ['label' => 'Настройки', 'url' => ['index']];
-\yii\web\YiiAsset::register($this);
+$this->title = 'Settings';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="settings-view">
+<div class="settings-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Create Settings', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'phone_number',
-            'email:email',
-            'address',
-            'btn_text_home_page',
-            'footer',
-            'contact_information_text:ntext',
-            'project_description:ntext',
-            'yandex_map_x',
-            'yandex_map_y',
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'key',
+            'value',
+            'description',
+            [
+                'class' => ActionColumn::className(),
+                'template' => '{view} {update} {delete}'
+            ],
         ],
-    ]) ?>
+    ]); ?>
+
 
 </div>

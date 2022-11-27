@@ -45,11 +45,12 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'text', 'image', 'created_at', 'created_by'], 'required'],
-            [['text', 'tagsList'], 'string'],
-            [['created_at', 'updated_at', 'created_by'], 'integer'],
+            [['title', 'text', 'image', 'created_at', 'created_by', 'state'], 'required'],
+            [['text'], 'string'],
+            [['created_at', 'updated_at', 'created_by', 'state'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['image'], 'file', 'extensions' => 'png, jpg'],
+            [['tagsList'], 'default']
         ];
     }
 
@@ -62,7 +63,8 @@ class News extends \yii\db\ActiveRecord
             'image' => 'Изображение',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата изменения',
-            'created_by' => 'Создано'
+            'created_by' => 'Создано',
+            'state' => 'Статус'
         ];
     }
 
@@ -71,9 +73,14 @@ class News extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
-    public function getNews_tags()
+    public function getNewsTags()
     {
-        return $this->hasMany(News_tag::className(), ['news_id' => 'id']);
+        return $this->hasMany(NewsTag::className(), ['news_id' => 'id']);
+    }
+
+    public function getState()
+    {
+        return $this->hasOne(State::className(), ['id' => 'state']);
     }
 
     public function saveImage($model){

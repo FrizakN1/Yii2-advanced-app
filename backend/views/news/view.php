@@ -3,9 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use dektrium\user\models\User;
+use common\models\State;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\News */
+/* @var $model common\models\News */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index']];
@@ -50,6 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_by',
                 'value' => function($model) {
                     return User::find()->where(['=', 'id', $model->created_by])->one()->username;
+                }
+            ],
+            [
+                'attribute' => 'state',
+                'value' => function($model) {
+                    return State::find()->where(['=', 'id', $model->state])->one()->name;
                 }
             ],
         ],

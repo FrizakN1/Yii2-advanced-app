@@ -9,8 +9,8 @@ use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 
 if (!Yii::$app->params['settings'] || !Yii::$app->params['page']) {
-    $settings = Settings::find()->one();
-    Yii::$app->params['settings']['footer'] = $settings->footer;
+    //$settings = Settings::find()->one();
+    //Yii::$app->params['settings']['footer'] = $settings->footer;
 
     $page = Page::find()->asArray()->all();
     Yii::$app->params['page']['title'] = array();

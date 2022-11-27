@@ -3,8 +3,9 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\News */
-/* @var $tags common\models\Tag */
+/* @var $model common\models\News */
+/* @var $dataTag array */
+/* @var $dataState array */
 
 $this->title = 'Изменение новости: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index']];
@@ -17,7 +18,8 @@ $this->params['breadcrumbs'][] = 'Изменить';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'tags' => $tags,
+        'dataTag' => $dataTag,
+        'dataState' => $dataState,
     ]) ?>
 
 </div>
