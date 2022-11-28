@@ -23,6 +23,7 @@ class Settings extends \yii\db\ActiveRecord
             [['key', 'value'], 'required'],
             [['key', 'description'], 'string', 'max' => 255],
             [['value'], 'string'],
+            [['key'], 'unique'],
         ];
     }
 
@@ -30,9 +31,9 @@ class Settings extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'key' => 'Key',
-            'value' => 'Value',
-            'description' => 'Description',
+            'key' => 'Ключ',
+            'value' => 'Значение',
+            'description' => 'Описание',
         ];
     }
 }

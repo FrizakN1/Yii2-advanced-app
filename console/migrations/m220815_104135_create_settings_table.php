@@ -11,7 +11,7 @@ class m220815_104135_create_settings_table extends Migration
     {
         $this->createTable('{{%settings}}', [
             'id' => $this->primaryKey(),
-            'key' => $this->string()->notNull(),
+            'key' => $this->string()->notNull()->unique(),
             'value' => $this->text()->notNull(),
             'description' => $this->string(),
         ]);

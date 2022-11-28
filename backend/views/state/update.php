@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\Models\Tag */
+/* @var $model common\models\State */
 
-$this->title = 'Изменение тега: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Теги', 'url' => ['index']];
+$this->title = 'Изменение статуса: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Статусы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Изменить';
 ?>
-<div class="tag-update">
+<div class="state-update">
 
     <?= $this->render('_form', [
         'model' => $model,

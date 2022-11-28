@@ -31,6 +31,7 @@ use kartik\file\FileInput;
             <img src="" alt="" id="preview" height="200px">
 
             <?= $form->field($model, 'image')->widget(FileInput::classname(), [
+                'language' => 'ru',
                 'options' => ['accept' => 'image/*'],
             ]); ?>
 

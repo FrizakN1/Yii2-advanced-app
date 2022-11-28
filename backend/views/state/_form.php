@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\Models\Tag */
+/* @var $model common\models\State */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="tag-form">
+<div class="state-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

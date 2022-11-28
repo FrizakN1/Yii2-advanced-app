@@ -64,7 +64,8 @@ class News extends \yii\db\ActiveRecord
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата изменения',
             'created_by' => 'Создано',
-            'state' => 'Статус'
+            'state' => 'Статус',
+            'tagsList' => 'Список тегов',
         ];
     }
 

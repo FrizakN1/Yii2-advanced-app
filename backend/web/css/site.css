@@ -265,9 +265,10 @@ a.desc:after {
 
 .left_side{
     width: 45%;
-    padding: 0 100px;
+    padding:0 30px 0 100px;
 }
 
 .right_side {
     width: 55%;
+    padding:0 100px 0 30px;
 }

@@ -5,12 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Settings */
 
-$this->title = 'Изменение настроек: ' . $model->key;
+$this->title = 'Добавление настроек';
 $this->params['breadcrumbs'][] = ['label' => 'Настройки', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->key, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Изменение';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="settings-update">
+<div class="settings-create">
 
     <?= $this->render('_form', [
         'model' => $model,

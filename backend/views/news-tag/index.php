@@ -6,18 +6,18 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SettingsSearch */
+/* @var $searchModel common\models\NewsTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Настройки';
+$this->title = 'News Tags';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="settings-index">
+<div class="news-tag-index">
 
-    <h1><?php //Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Добавить настройки', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create News Tag', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,10 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'key',
-            'value',
-            'description',
+            'news_id',
+            'tag_id',
             [
                 'class' => ActionColumn::className(),
                 'template' => '{view} {update} {delete}'

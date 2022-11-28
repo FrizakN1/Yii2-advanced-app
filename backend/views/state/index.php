@@ -6,18 +6,16 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SettingsSearch */
+/* @var $searchModel common\models\StateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Настройки';
+$this->title = 'Статусы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="settings-index">
-
-    <h1><?php //Html::encode($this->title) ?></h1>
+<div class="state-index">
 
     <p>
-        <?= Html::a('Добавить настройки', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать статус', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,9 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'key',
-            'value',
-            'description',
+            'name',
             [
                 'class' => ActionColumn::className(),
                 'template' => '{view} {update} {delete}'
